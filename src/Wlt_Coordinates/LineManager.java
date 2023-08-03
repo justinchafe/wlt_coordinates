@@ -81,7 +81,7 @@ public class LineManager {
 
 	public boolean topSideIsEmpty() {
 		if (top.getNumLines() == 0) {
-			System.out.println("EMPTY SUCKA");
+			System.out.println("EMPTY TOP");
 			return true;
 		}else 
 			return false;
@@ -89,7 +89,7 @@ public class LineManager {
 	
 	public boolean bottomSideIsEmpty() {
 		if (bottom.getNumLines() == 0) {
-			System.out.println("EMPTY SUCKA");
+			System.out.println("EMPTY BOTTOM");
 			return true;
 		}else 
 			return false;
@@ -97,7 +97,7 @@ public class LineManager {
 
 	public boolean rightSideIsEmpty() {
 		if (right.getNumLines() == 0) {
-			System.out.println("EMPTY SUCKA");
+			System.out.println("EMPTY RIGHT");
 			return true;
 		}else 
 			return false;
@@ -105,6 +105,7 @@ public class LineManager {
 
 	public boolean leftSideIsEmpty() {
 		if (left.getNumLines() == 0) {
+			System.out.println("EMPTY LEFT");
 			return true;
 		}else 
 			return false;
