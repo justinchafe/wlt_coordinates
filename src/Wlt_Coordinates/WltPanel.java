@@ -76,9 +76,11 @@ public class WltPanel extends JPanel implements MouseListener, MouseMotionListen
 		mySlides = new Slides();
 		//mySlides.addSlide("wlt3_image1.jpg", lineOne, lineTwo);
 		//mySlides.addSlide("wlt3_image2.jpg", lineOne, lineTwo);
-		String imgPath = System.getProperty("user.dir") + System.getProperty("file.separator") + "imagedata.csv";
-                System.out.println(imgPath);
-		if (!mySlides.loadFromFile(imgPath)) { 
+
+		//String imgPath = System.getProperty("user.dir") + System.getProperty("file.separator") + "imagedata.csv"; //edited 2023
+
+        System.out.println(Wlt_Coordinates.IMG_FILE);
+		if (!mySlides.loadFromFile(Wlt_Coordinates.IMG_FILE)) {
 				JFrame frame = new JFrame("warning");
 				JOptionPane.showMessageDialog(frame,
     				"No Images to Load!",

@@ -12,7 +12,7 @@ import java.awt.geom.*;
 
 public class XmlBuilder {
 
-	 Document doc;
+	Document doc;
 	String fileName;
 
   
@@ -23,6 +23,7 @@ public class XmlBuilder {
     public XmlBuilder(String fileName) {
 		this.fileName = fileName;
         try {
+
             /////////////////////////////
             //Creating an empty XML Document
 

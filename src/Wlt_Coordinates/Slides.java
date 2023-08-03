@@ -7,6 +7,8 @@ import java.awt.geom.Line2D.Double;
 import javax.imageio.*;
 import java.awt.image.*;
 import java.io.*;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.*;
 
 public class Slides {
@@ -28,12 +30,15 @@ public class Slides {
 
 //add a single slide.
 	public boolean addSlide(String image) {
+		System.out.println("String: " + image);
+		java.net.URL url = getClass().getClassLoader().getResource(Wlt_Coordinates.IMG_DIR + System.getProperty("file.separator") + image);//Updated 2023 for jar packaging.
+		System.out.println("url: " + url);
 		JFrame frame = new JFrame("warning");
         	if (slideCount < max_Slides) {
 			try {
-    				slides[slideCount][0] = ImageIO.read(new File(image));
+    				slides[slideCount][0] = ImageIO.read(new File(url.toURI()));
 				slides[slideCount][1] = image;	
-			} catch (IOException e) {
+			} catch (IOException | URISyntaxException e) {
 				JOptionPane.showMessageDialog(frame,
     				"Error Loading Image!",
    				"",
@@ -58,6 +63,7 @@ filename:String, LineOne.x1, LineOne.y1, LineOne.x2, LineOne.y2, LineTwo.x1, Lin
 
 */
 	public boolean loadFromFile(String filename) {
+
 		BufferedReader in;
 		FileReader file;
 		StringTokenizer tokens;
@@ -67,9 +73,13 @@ filename:String, LineOne.x1, LineOne.y1, LineOne.x2, LineOne.y2, LineTwo.x1, Lin
 		lineTwo = new Line2D.Double();
 		double x1,y1,x2,y2;
 		String line, image, sNum;
-	
+
 			try {
-				in = new BufferedReader(new FileReader(filename));
+				java.net.URL url = getClass().getClassLoader().getResource(filename);//Updated 2023 for jar packaging.
+				System.out.println("url: " + url);
+				File f = new File(url.toURI());
+				//in = new BufferedReader(new FileReader(filename));
+				in = new BufferedReader(new FileReader(f));
 				line = null;
 				int totalSlides = 1;
 				while ((line=in.readLine()) != null){
@@ -80,7 +90,8 @@ filename:String, LineOne.x1, LineOne.y1, LineOne.x2, LineOne.y2, LineTwo.x1, Lin
 				if (totalSlides - 1  > 0) {
 					max_Slides = totalSlides-1;
 					slides = new Object[max_Slides][SLIDE_FIELDS];
-					in = new BufferedReader(new FileReader(filename));
+					//in = new BufferedReader(new FileReader(filename));
+					in = new BufferedReader(new FileReader(f));
 					line = null;		
 					while ((line = in.readLine()) != null) {
 						tokens = new StringTokenizer(line, ",");
@@ -96,7 +107,7 @@ filename:String, LineOne.x1, LineOne.y1, LineOne.x2, LineOne.y2, LineTwo.x1, Lin
 					return true;
 				}else
 					return false;
-			}catch (IOException e) {
+			}catch (IOException | URISyntaxException e) {
                                 System.out.println("file exception:" + e);
 				return false;
 		 
