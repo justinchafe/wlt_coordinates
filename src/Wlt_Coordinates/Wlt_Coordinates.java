@@ -15,7 +15,7 @@ public class Wlt_Coordinates extends JFrame {
 	final static String NOT_FINISHED_ERROR = "Please finish extending the line across the container.";
 	final static String IMG_DIR = "images";
 	final static String IMG_FILE = "settings/imagedata.csv";
-	final static String FILE_NAME = "settings/xmlFootastic";
+	final static String FILE_NAME = "XmlFile";
 
 	final int BUTT_SIZE = 120;
 	final static String MOD_END_POINTS = "Modify";
