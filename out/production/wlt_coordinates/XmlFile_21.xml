@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<SlideInfo>
+    <Slide1>
+        <panelDimensions>
+            <width>1010</width>
+            <height>671</height>
+        </panelDimensions>
+        <img dimensions="800, 627">wlt3_1.jpg</img>
+        <SideRight numLines="0"/>
+        <SideLeft numLines="0"/>
+        <SideTop numLines="0"/>
+        <SideBottom numLines="0"/>
+    </Slide1>
+    <Slide2>
+        <panelDimensions>
+            <width>1010</width>
+            <height>671</height>
+        </panelDimensions>
+        <img dimensions="800, 627">wlt3_2.jpg</img>
+        <SideRight numLines="0"/>
+        <SideLeft numLines="0"/>
+        <SideTop numLines="0"/>
+        <SideBottom numLines="0"/>
+    </Slide2>
+    <Slide3>
+        <panelDimensions>
+            <width>1010</width>
+            <height>671</height>
+        </panelDimensions>
+        <img dimensions="800, 716">wlt4_1.jpg</img>
+        <SideRight numLines="0"/>
+        <SideLeft numLines="0"/>
+        <SideTop numLines="0"/>
+        <SideBottom numLines="0"/>
+    </Slide3>
+    <Slide4>
+        <panelDimensions>
+            <width>1010</width>
+            <height>671</height>
+        </panelDimensions>
+        <img dimensions="800, 716">wlt4_2.jpg</img>
+        <SideRight numLines="0"/>
+        <SideLeft numLines="0"/>
+        <SideTop numLines="0"/>
+        <SideBottom numLines="0"/>
+    </Slide4>
+    <Slide5>
+        <panelDimensions>
+            <width>1010</width>
+            <height>671</height>
+        </panelDimensions>
+        <img dimensions="800, 666">wlt5_1.jpg</img>
+        <SideRight numLines="0"/>
+        <SideLeft numLines="0"/>
+        <SideTop numLines="0"/>
+        <SideBottom numLines="0"/>
+    </Slide5>
+    <NumSlides>5</NumSlides>
+</SlideInfo>
