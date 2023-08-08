@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<SlideInfo>
+<Slide1>
+<panelDimensions>
+<width>1006</width>
+<height>661</height>
+</panelDimensions>
+<img dimensions="800, 627">wlt3_1.jpg</img>
+<SideRight numLines="4">
+<L1>469.0, 526.0, 488.0, 527.0</L1>
+<L2>488.0, 527.0, 453.0, 516.0</L2>
+<L3>453.0, 516.0, 369.0, 386.0</L3>
+<L4>369.0, 386.0, 305.0, 251.0</L4>
+</SideRight>
+<SideLeft numLines="0"/>
+<SideTop numLines="0"/>
+<SideBottom numLines="0"/>
+</Slide1>
+<NumSlides>1</NumSlides>
+</SlideInfo>

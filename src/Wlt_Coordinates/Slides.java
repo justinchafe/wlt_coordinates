@@ -9,6 +9,7 @@ import java.awt.image.*;
 import java.io.*;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.nio.file.*;
 import java.util.*;
 
 public class Slides {
@@ -31,14 +32,13 @@ public class Slides {
 //add a single slide.
 	public boolean addSlide(String image) {
 		System.out.println("String: " + image);
-		java.net.URL url = getClass().getClassLoader().getResource(Wlt_Coordinates.IMG_DIR + System.getProperty("file.separator") + image);//Updated 2023 for jar packaging.
-		System.out.println("url: " + url);
+		java.net.URL url = getClass().getClassLoader().getResource(Wlt_Coordinates.IMG_DIR + "/" + image);//Updated 2023 for jar packaging.
 		JFrame frame = new JFrame("warning");
         	if (slideCount < max_Slides) {
 			try {
-    				slides[slideCount][0] = ImageIO.read(new File(url.toURI()));
-				slides[slideCount][1] = image;	
-			} catch (IOException | URISyntaxException e) {
+				slides[slideCount][0] = ImageIO.read(url); //updated 2023 - jar
+				slides[slideCount][1] = image;
+			} catch (IOException e) {
 				JOptionPane.showMessageDialog(frame,
     				"Error Loading Image!",
    				"",
@@ -75,11 +75,10 @@ filename:String, LineOne.x1, LineOne.y1, LineOne.x2, LineOne.y2, LineTwo.x1, Lin
 		String line, image, sNum;
 
 			try {
-				java.net.URL url = getClass().getClassLoader().getResource(filename);//Updated 2023 for jar packaging.
-				System.out.println("url: " + url);
-				File f = new File(url.toURI());
-				//in = new BufferedReader(new FileReader(filename));
+				//java.net.URL url = getClass().getClassLoader().getResource(filename);//Updated 2023 for jar packaging.
+				File f = streamToFile(getClass().getClassLoader().getResourceAsStream(filename)); //Updated 2023 (From Reditt)
 				in = new BufferedReader(new FileReader(f));
+
 				line = null;
 				int totalSlides = 1;
 				while ((line=in.readLine()) != null){
@@ -90,7 +89,6 @@ filename:String, LineOne.x1, LineOne.y1, LineOne.x2, LineOne.y2, LineTwo.x1, Lin
 				if (totalSlides - 1  > 0) {
 					max_Slides = totalSlides-1;
 					slides = new Object[max_Slides][SLIDE_FIELDS];
-					//in = new BufferedReader(new FileReader(filename));
 					in = new BufferedReader(new FileReader(f));
 					line = null;		
 					while ((line = in.readLine()) != null) {
@@ -107,8 +105,8 @@ filename:String, LineOne.x1, LineOne.y1, LineOne.x2, LineOne.y2, LineTwo.x1, Lin
 					return true;
 				}else
 					return false;
-			}catch (IOException | URISyntaxException e) {
-                                System.out.println("file exception:" + e);
+			}catch (IOException e) {
+                                System.out.println("File Exception:" + e.getMessage());
 				return false;
 		 
 			}
@@ -164,6 +162,36 @@ filename:String, LineOne.x1, LineOne.y1, LineOne.x2, LineOne.y2, LineTwo.x1, Lin
 		}else
 			//throw error
 			System.out.println("Error:  Current Max is greater than new max");
+	}
+
+	/*****
+	 * Added 2023
+	 * @param  in - an InputStream
+	 * @return File - returns tmp file for use.
+	 * Details - From StackOverflow:  https://stackoverflow.com/questions/941754/how-to-get-a-path-to-a-resource-in-a-java-jar-file
+	 */
+	public static File streamToFile(InputStream in) {
+		if (in == null) {
+			return null;
+		}
+
+		try {
+			File f = File.createTempFile(String.valueOf(in.hashCode()), ".tmp");
+			f.deleteOnExit();
+
+			FileOutputStream out = new FileOutputStream(f);
+			byte[] buffer = new byte[1024];
+
+			int bytesRead;
+			while ((bytesRead = in.read(buffer)) != -1) {
+				out.write(buffer, 0, bytesRead);
+			}
+
+			return f;
+		} catch (IOException e) {
+			System.out.println("IOException: " + e.getMessage());
+			return null;
+		}
 	}
 
 /*
